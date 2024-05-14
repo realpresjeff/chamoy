@@ -2,6 +2,11 @@
     "name": "chamoy",
     "version": "0.0.1",
     "description": "A TypeScript database that can sync.",
+    "main": "dist/script.js",
+    "types": "dist/script.d.ts",
+    "files": [
+      "dist"
+    ],
     "scripts": {
         "test": "npx jest"
     },

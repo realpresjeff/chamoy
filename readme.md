@@ -1,6 +1,6 @@
 # chamoy
 
-chamoy is a TypeScript database that leverages IndexedDB API with Web SQL and Web Storage API as polyfills for browsers lacking support for IndexedDB. This approach ensures broad compatibility across different browser environments while maintaining efficient storage and querying capabilities.
+chamoy is a TypeScript database that leverages IndexedDB API with Web SQL and Web Storage API as polyfills for browsers lacking support for IndexedDB. This approach ensures broad compatibility across most browser environments while maintaining efficient storage and querying capabilities.
 
 ## Features
 
@@ -37,14 +37,7 @@ chamoy is a TypeScript database that leverages IndexedDB API with Web SQL and We
 
    - Implement additional logic for syncing data between client and server if required. This may involve AJAX requests or WebSocket communication for data exchange with a server-side database.
 
-6. **Testing and Browser Compatibility:**
-
-   - Test the implementation across different browsers to ensure compatibility and functionality. Use automated testing tools and browser emulators for comprehensive coverage.
-
-7. **Documentation and Usage:**
-   - Provide clear documentation and usage guidelines for developers. Include examples, API references, and compatibility information to facilitate integration into projects effectively.
-
-By following these steps, chamoyDB offers a consistent storage solution across different browser environments, ensuring optimal performance and functionality where supported.
+By following these steps, chamoyDB offers a consistent storage solution across most browser environments, ensuring optimal performance and functionality where supported.
 
 ```usage
 
@@ -90,5 +83,3 @@ Here's a breakdown of what the class does:
 5. **Data Sync Methods**:
    - `exportTableToJson`: Exports database table data to JSON format.
    - `importJsonTable`: Imports JSON data into the database table.
-
-Overall, this class provides a unified interface for interacting with different types of web storage mechanisms, making it easier to manage data persistence in web applications.

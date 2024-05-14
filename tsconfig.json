@@ -1,14 +1,20 @@
 {
   "compilerOptions": {
+    "lib": ["es2018", "dom", "esnext"],
     "target": "es2018",
-    "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true,
+    "module": "ES2015",
+    "sourceMap": false,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
-    "resolveJsonModule": true,
-    "types": ["jest", "node"]
+    "strict": true,
+    "declaration": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node", "jest"],
+    "esModuleInterop": true,
+    "inlineSourceMap": false
   },
   "exclude": ["node_modules", "dist"]
 }
