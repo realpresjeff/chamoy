@@ -10,16 +10,16 @@ chamoy is a TypeScript database that leverages IndexedDB API with Web SQL and We
 
 - **Web SQL:**
 
-  - Acts as a fallback polyfill for browsers lacking support for IndexedDB. Web SQL provides a SQL-based interface for relational database operations, enabling storage functionality in older browsers.
+  - Acts as a fallback polyfill for browsers lacking support for IndexedDB. Web SQL provides a SQL-based interface for relational database operations, enabling storage functionality in older browsers. (NOT YET IMPLEMENTED)
 
 - **Web Storage API (localStorage and sessionStorage):**
   - Implements a simple key-value store for storing smaller amounts of data persistently or for the duration of a session. Serves as an additional fallback for browsers that do not support IndexedDB or Web SQL.
 
-## Implementation Steps
+## Implementation
 
 1. **Feature Detection:**
 
-   - Detect the availability of IndexedDB in the user's browser using feature detection techniques.
+   - Detect the availability of IndexedDB in the user's browser.
 
 2. **IndexedDB Implementation:**
 
@@ -35,51 +35,35 @@ chamoy is a TypeScript database that leverages IndexedDB API with Web SQL and We
 
 5. **Syncing and Replication:**
 
-   - Implement additional logic for syncing data between client and server if required. This may involve AJAX requests or WebSocket communication for data exchange with a server-side database.
+   - `exportTableToJson`: Exports database table data to JSON format.
+   - `importJsonTable`: Imports JSON data into the database table.
 
 By following these steps, chamoyDB offers a consistent storage solution across most browser environments, ensuring optimal performance and functionality where supported.
 
-```usage
-
-const database = new chamoy('myDatabase', 1);
-
-database.setIndexes('myStore', 'id', [
-    { name: 'nameIndex', keyPath: 'name', unique: false },
-    { name: 'ageIndex', keyPath: 'age', unique: false }
-]);
-
-// Open the database
-database.open()
-    .then(db => {
-        console.log('Database opened successfully');
-        // Perform CRUD operations...
-    })
-    .catch(error => {
-        console.error('Error opening database:', error);
-    });
-```
-
-Here's a breakdown of what the class does:
-
-1. **Constructor**: Initializes the database name, version, storage mode, and other properties.
-
-2. **Miscellaneous Methods**:
-
-   - `setIndexes`: Sets indexes for the database.
-   - `getStorageUsageMessage`: Retrieves storage usage information.
-
-3. **Database Connection Methods**:
-
-   - `openIndexedDB`: Opens the database using IndexedDB.
-   - `openWebSQL`: Opens the database using Web SQL.
-   - `openWebStorage`: Opens the database using Web Storage.
-
-4. **CRUD Operations**:
+6. **CRUD Operations**:
 
    - `put`: Inserts data into the database.
    - `get`: Retrieves data from the database.
+   - `getAll`: Retrieves all data from the database.
+   - `update`: Updates data by key.
    - `delete`: Deletes data from the database.
 
-5. **Data Sync Methods**:
-   - `exportTableToJson`: Exports database table data to JSON format.
-   - `importJsonTable`: Imports JSON data into the database table.
+```usage
+
+const props = { databaseName: "MyDatabase", objectStoreName: "MyObjectStore", indexName: "NameIndex", indexArr: ["name.last", "name.first"], keyPath: "id"};
+
+const db = new chamoy(props);
+
+const put = db.put({ key: 12345, id: 12345, name: { first: "John", last: "Doe" }, age: 42 }, (res) => console.log(res));
+
+db.get({key: 12345}, (res) => console.log(res));
+
+db.update({ key: 12345, id: 12345, name: { first: "John", last: "Smith" }}, (res) => console.log(res));
+
+db.get({ key: 12345 }, (res) => console.log(res));
+
+db.delete({key: 12345}, (res) => console.log(res));
+
+db.get({ key: 12345 }, (res) => console.log(res));
+
+```
