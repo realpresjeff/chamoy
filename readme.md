@@ -2,6 +2,10 @@
 
 chamoy is a TypeScript database that leverages IndexedDB API with Web SQL and Web Storage API as polyfills for browsers lacking support for IndexedDB. This approach ensures broad compatibility across most browser environments while maintaining efficient storage and querying capabilities.
 
+```
+npm i chamoy
+```
+
 ## Features
 
 - **IndexedDB API:**
